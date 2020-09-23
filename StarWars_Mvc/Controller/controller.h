@@ -8,14 +8,18 @@ private:
 
 public:
 
-    string modelEmployeeRecord() {
-        return model.employeeRecord();
+ //   string modelEntity()
+	//{
+ //       return model();
+ //   }
+	
+    string modelSithName()
+	{
+        return model.sithName();
     }
-    string modelPersonalRecord() {
-        return model.personalRecord();
-    }
-    string modelSalesLeadRecord() {
-        return model.salesLeadRecord();
+    string modelJediName()
+	{
+        return model.jediName();
     }
 
     void updateView(string personal, string saleslead, string employee) {
