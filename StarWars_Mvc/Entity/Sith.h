@@ -14,11 +14,11 @@ public:
 
 	int getPowerLevel()
 	{
-		return ForceBeing::getPowerLevel() + 1;
+		return ForceBeing::getPowerLevel();
 	}
 
 	string getName()
 	{
-		return "Sith Lord: " + ForceBeing::getName();
+		return "Sith\t" + ForceBeing::getName();
 	}
 };
