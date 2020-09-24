@@ -21,26 +21,20 @@ public:
 	//{
  //       return model.jediName();
  //   }
-
-	void updateView()
-    {
-        model.sortLevels();
-    }
-
-    void updateView(string personal, string saleslead, string employee)
+ //
+	vector<string> sortEntities()
 	{
-        view.printRecord(personal);
-        view.printRecord(saleslead);
-        view.printRecord(employee);
+		return model.sortLevels();
+	}
+
+    vector<string> getWinners()
+    {
+        return model.getWinners();
     }
 
-    static string getWinner(ForceBeing& player1, ForceBeing& player2)
+	void updateView(vector<string> sortLevels, vector<string> winners)
     {
-        return player1.getPowerLevel() > player2.getPowerLevel() ? player1.getName() : player2.getName();
-    }
-
-    static void printWinner(string winner)
-    {
-        cout << "The winner is: " << winner << endl;
+        view.printValues(sortLevels);
+        view.printValues(winners);
     }
 };

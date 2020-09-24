@@ -6,10 +6,11 @@ using namespace std;
 class View
 {
 public:
-    void printRecord(string recordItem)
+    void printValues(vector<string> svalues)
 	{
         cout << "-----" << endl;
-        cout << recordItem << endl;
+    	for (string s : svalues)
+			cout << s << endl;
         cout << "-----" << endl;
     }
 };

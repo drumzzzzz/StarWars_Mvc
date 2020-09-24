@@ -21,4 +21,14 @@ public:
 	{
 		return "Jedi\t" + ForceBeing::getName();
 	}
+
+	void setRank(int rank)
+	{
+		ForceBeing::setRank(rank);
+	}
+
+	int getRank()
+	{
+		return ForceBeing::getRank();
+	}
 };

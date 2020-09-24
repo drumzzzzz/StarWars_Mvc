@@ -1,7 +1,6 @@
 #include <string>
 #include "../Entity/Jedi.h"
 #include "../Entity/Sith.h"
-#include "../Entity/ForceBeing.h"
 #include <vector>
 
 #define MAX_LEVEL 101
@@ -17,54 +16,62 @@ using namespace std;
 class Model
 {
 private:
-    // Employee johnSmith = Employee("John Smith", "920-227-3248", 18, "id-abc-123");
-    // SalesLead judySmith = SalesLead("Judy Smith", "920-227-3249", 19, "Apple");
-    // Personal bruceSpringsteen = Personal("Bruce Springsteen", "920-227-3249", 19, "BFF");
-
     template <typename T>
     T IsMatch(T level1, T level2)
 	{
         return (level1 == level2) ? true : false;
     }
-
+	
     vector <Sith> sith_entities;
     vector <Jedi> jedi_entities;
+    int ranks;
 	
 public:
 
     Model()
     {
         sith_entities.push_back(Sith("Darth Vader", 100));
+        sith_entities.push_back(Sith("Darth Maul", 80));
+        sith_entities.push_back(Sith("Darth Sidious", 95));
         jedi_entities.push_back(Jedi("Luke Skywalker", 90));
         jedi_entities.push_back(Jedi("Yoda", 100));
+        jedi_entities.push_back(Jedi("Obi-Wan Kenobi", 80));
     }
+
+	enum ENTITY_TYPE
+    {
+	    SITH,
+    	JEDI
+    };
 	
     string getName()
     {
         return "";
-    	
     }
 
 	vector<string> sortLevels()
     {
         vector<string> sorted;
-        int rank = 1;
+        ranks = 1;
         bool isRank = false;
 
+        sorted.push_back("Entities sorted and ranked by level:");
+        sorted.push_back("Rank\tLevel\tType\tName");
+    	
     	for (int level = MAX_LEVEL; level > 0; level--)
     	{
             if (isRank)
             {
                 isRank = false;
-                rank++;
+                ranks++;
             }
     		
             for (Jedi j : jedi_entities)
             {
                 if (IsMatch(j.getPowerLevel(), level))
                 {
-                    // sorted.push_back(to_string(rank) + "\t" + j.getName() + "\t" + to_string(j.getPowerLevel()));
-                    sorted.push_back(FormatString(rank, j.getPowerLevel(), j.getName()));
+                    j.setRank(ranks);
+                    sorted.push_back(FormatString(j.getRank(), j.getPowerLevel(), j.getName()));
                     isRank = true;
                 }
             }
@@ -73,8 +80,8 @@ public:
     		{
                 if (IsMatch(s.getPowerLevel(), level))
                 {
-                    //sorted.push_back(to_string(rank) + "\t" + s.getName() + "\t" + to_string(s.getPowerLevel()));
-                    sorted.push_back(FormatString(rank, s.getPowerLevel(), s.getName()));
+                    s.setRank(ranks);
+                    sorted.push_back(FormatString(s.getRank(), s.getPowerLevel(), s.getName()));
                     isRank = true;
                 }
     		}
@@ -83,36 +90,78 @@ public:
                 break;
     	}
 
-    	for(string sval : sorted)
+		return sorted;
+    }
+
+    vector<string> getWinners()
+    {
+        vector<string> jedi_winners;
+        vector<string> sith_winners;
+        string svalue;
+
+    	svalue = "The highest level Jedis are: "
+
+    	for (Jedi j : jedi_entities)
     	{
-            cout << sval << endl;
+    		if (svalue)
+            svalue += j;
     	}
+
+    	
+        
+        sorted.push_back("Rank\tLevel\tType\tName");
 
         return sorted;
     }
 
-	vector<string> getSithInfo()
+	int getCount()
     {
-        //vector<string> vs;
-    	
-        //for (Sith s : sith_entities)
-        //{
-	       // vs.push_back(s)
-        //}
-    	
+        return sith_entities.size() + jedi_entities.size();
     }
 
-    vector<string> getJediInfo()
+	int getCount(ENTITY_TYPE entity_type) 
     {
-
+        (entity_type == JEDI) ? jedi_entities.size() : sith_entities.size();
     }
 	
- //   string sithName()
-	//{
- //       return darthVader.getName();
- //   }
- //   string jediName()
-	//{
- //       return lukeSkyWalker.getName();
- //   }
+	vector<string> getNames()
+    {
+        vector<string> names;
+    	
+        for (Jedi j : jedi_entities)
+            names.push_back(j.getName());
+
+        for (Sith s : sith_entities)
+            names.push_back(s.getName());
+
+        return names;
+    }
+
+    vector<string> getNames(ENTITY_TYPE entity_type)
+    {
+        vector<string> names;
+
+        if (entity_type == JEDI)
+        {
+            for (Jedi j : jedi_entities)
+                names.push_back(j.getName());
+        }
+        else
+        {
+            for (Sith s : sith_entities)
+                names.push_back(s.getName());
+        }
+        return names;
+    }
+
+    //static string getWinner(ForceBeing& player1, ForceBeing& player2)
+    //{
+    //    return player1.getPowerLevel() > player2.getPowerLevel() ? player1.getName() : player2.getName();
+    //}
+
+    //static void printWinner(string winner)
+    //{
+    //    cout << "The winner is: " << winner << endl;
+    //}
+	
 };

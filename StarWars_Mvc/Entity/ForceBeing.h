@@ -13,6 +13,7 @@ private:
 	int power_level;
 	string name;
 	bool evil;
+	int rank;
 
 protected:
 	ForceBeing(int level)
@@ -29,7 +30,6 @@ protected:
 	{
 		name = characterName;
 	}
-
 
 public:
 	virtual int getPowerLevel()
@@ -50,6 +50,16 @@ public:
 	virtual void setGood()
 	{
 		evil = false;
+	}
+
+	virtual void setRank(int _rank)
+	{
+		rank = _rank;
+	}
+
+	virtual int getRank()
+	{
+		return rank;
 	}
 };
 #endif

@@ -8,12 +8,5 @@ int main()
 {
 	// Note: renaming to main.cpp does not require a .replit file
     Controller controller;
-
-    controller.updateView();
-
-    //controller.updateView(
-    //    controller.modelPersonalRecord(),
-    //    controller.modelSalesLeadRecord(),
-    //    controller.modelEmployeeRecord()
-    //);
+    controller.updateView(controller.sortEntities(), controller.getWinners());
 }
