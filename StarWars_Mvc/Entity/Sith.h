@@ -5,6 +5,9 @@
 // Sith inherits ForceBeing
 class Sith : public ForceBeing
 {
+private:
+	int rank;
+	
 public:
 	Sith(string sithName, int level) : ForceBeing(level)
 	{
@@ -22,13 +25,8 @@ public:
 		return "Sith\t" + ForceBeing::getName();
 	}
 
-	void setRank(int rank)
+	string sgetName()
 	{
-		ForceBeing::setRank(rank);
-	}
-
-	int getRank()
-	{
-		return ForceBeing::getRank();
+		return ForceBeing::getName();
 	}
 };

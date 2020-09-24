@@ -51,15 +51,5 @@ public:
 	{
 		evil = false;
 	}
-
-	virtual void setRank(int _rank)
-	{
-		rank = _rank;
-	}
-
-	virtual int getRank()
-	{
-		return rank;
-	}
 };
 #endif

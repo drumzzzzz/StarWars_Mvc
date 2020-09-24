@@ -13,4 +13,11 @@ public:
 			cout << s << endl;
         cout << "-----" << endl;
     }
+
+    void printValues(string svalues)
+    {
+        cout << "-----" << endl;
+        cout << svalues << endl;
+        cout << "-----" << endl;
+    }
 };

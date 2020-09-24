@@ -5,6 +5,9 @@
 // Jedi inherits ForceBeing
 class Jedi : public ForceBeing
 {
+private:
+	int rank;
+	
 public:
 	Jedi(string jediName, int level) : ForceBeing(level)
 	{
@@ -22,13 +25,8 @@ public:
 		return "Jedi\t" + ForceBeing::getName();
 	}
 
-	void setRank(int rank)
+	string sgetName()
 	{
-		ForceBeing::setRank(rank);
-	}
-
-	int getRank()
-	{
-		return ForceBeing::getRank();
+		return ForceBeing::getName();
 	}
 };

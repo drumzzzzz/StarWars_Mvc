@@ -25,6 +25,8 @@ private:
     vector <Sith> sith_entities;
     vector <Jedi> jedi_entities;
     int ranks;
+    int jedi_max;
+    int sith_max;
 	
 public:
 
@@ -36,6 +38,18 @@ public:
         jedi_entities.push_back(Jedi("Luke Skywalker", 90));
         jedi_entities.push_back(Jedi("Yoda", 100));
         jedi_entities.push_back(Jedi("Obi-Wan Kenobi", 80));
+
+    	for (Jedi j : jedi_entities)
+    	{
+            if (jedi_max == 0 || j.getPowerLevel() > jedi_max)
+                jedi_max = j.getPowerLevel();
+    	}
+
+        for (Sith s : sith_entities)
+        {
+            if (sith_max == 0 || s.getPowerLevel() > sith_max)
+                sith_max = s.getPowerLevel();
+        }
     }
 
 	enum ENTITY_TYPE
@@ -70,8 +84,7 @@ public:
             {
                 if (IsMatch(j.getPowerLevel(), level))
                 {
-                    j.setRank(ranks);
-                    sorted.push_back(FormatString(j.getRank(), j.getPowerLevel(), j.getName()));
+                    sorted.push_back(FormatString(ranks, j.getPowerLevel(), j.getName()));
                     isRank = true;
                 }
             }
@@ -80,38 +93,73 @@ public:
     		{
                 if (IsMatch(s.getPowerLevel(), level))
                 {
-                    s.setRank(ranks);
-                    sorted.push_back(FormatString(s.getRank(), s.getPowerLevel(), s.getName()));
+                    sorted.push_back(FormatString(ranks, s.getPowerLevel(), s.getName()));
                     isRank = true;
                 }
     		}
-
-    		if (sorted.size() == jedi_entities.size() + sith_entities.size())
-                break;
     	}
 
 		return sorted;
     }
 
-    vector<string> getWinners()
+    string getJediWinners()
     {
-        vector<string> jedi_winners;
-        vector<string> sith_winners;
-        string svalue;
-
-    	svalue = "The highest level Jedis are: "
+        string svalue = "The Highest Level Jedi(s):\n";
+        bool isWinner = false;
 
     	for (Jedi j : jedi_entities)
     	{
-    		if (svalue)
-            svalue += j;
+            if (j.getPowerLevel() == jedi_max)
+            {
+                svalue.append(j.sgetName() + "\n");
+            }
     	}
-
     	
-        
-        sorted.push_back("Rank\tLevel\tType\tName");
+        svalue.append("can win against:\n");
+    	
+        for (Sith s : sith_entities)
+        {
+	        if (s.getPowerLevel() < jedi_max)
+	        {
+                svalue.append(s.sgetName() + "\n");
+                isWinner = true;
+	        }
+        }
 
-        return sorted;
+        if (!isWinner)
+            svalue.append("none\n");
+    	
+        return svalue;
+    }
+
+    string getSithWinners()
+    {
+        string svalue = "The Highest Level Sith(s):\n";
+        bool isWinner = false;
+
+        for (Sith s : sith_entities)
+        {
+            if (s.getPowerLevel() == sith_max)
+            {
+                svalue.append(s.sgetName() + "\n");
+            }
+        }
+
+        svalue.append("can win against:\n");
+
+        for (Jedi j : jedi_entities)
+        {
+            if (j.getPowerLevel() < sith_max)
+            {
+                svalue.append(j.sgetName() + "\n");
+                isWinner = true;
+            }
+        }
+
+        if (!isWinner)
+            svalue.append("none\n");
+    	
+        return svalue;
     }
 
 	int getCount()

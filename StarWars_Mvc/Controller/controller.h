@@ -27,14 +27,20 @@ public:
 		return model.sortLevels();
 	}
 
-    vector<string> getWinners()
+    string getJediWinners()
     {
-        return model.getWinners();
+        return model.getJediWinners();
     }
 
-	void updateView(vector<string> sortLevels, vector<string> winners)
+    string getSithWinners()
+    {
+        return model.getSithWinners();
+    }
+
+	void updateView(vector<string> sortLevels, string jediwinners, string sithwinners)
     {
         view.printValues(sortLevels);
-        view.printValues(winners);
+        view.printValues(jediwinners);
+        view.printValues(sithwinners);
     }
 };
