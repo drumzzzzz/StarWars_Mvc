@@ -5,9 +5,6 @@
 // Jedi inherits ForceBeing
 class Jedi : public ForceBeing
 {
-private:
-	int rank;
-	
 public:
 	Jedi(string jediName, int level) : ForceBeing(level)
 	{

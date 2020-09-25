@@ -7,21 +7,6 @@ private:
     View view;
 
 public:
-
- //   string modelEntity()
-//    {
- //       return model();
- //   }
-	
- //   string modelSithName()
-	//{
- //       return model.sithName();
- //   }
- //   string modelJediName()
-	//{
- //       return model.jediName();
- //   }
- //
 	vector<string> sortEntities()
 	{
 		return model.sortLevels();

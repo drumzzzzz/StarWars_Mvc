@@ -6,18 +6,18 @@ using namespace std;
 class View
 {
 public:
-    void printValues(vector<string> svalues)
-	{
-        cout << "-----" << endl;
-    	for (string s : svalues)
-			cout << s << endl;
-        cout << "-----" << endl;
-    }
-
+	// Display a string value
     void printValues(string svalues)
     {
-        cout << "-----" << endl;
+        cout << endl;
         cout << svalues << endl;
-        cout << "-----" << endl;
+    }
+
+	// Overloaded function: Iterate and display an arrays values
+    void printValues(vector<string> svalues)
+    {
+        cout << endl;
+        for (string s : svalues)
+            cout << s << endl;
     }
 };
